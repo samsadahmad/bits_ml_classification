@@ -16,6 +16,8 @@ from sklearn.metrics import accuracy_score, confusion_matrix, classification_rep
 import plotly.graph_objects as go
 import plotly.express as px
 import base64
+import subprocess
+import sys
 
 TABLE_SCROLL_THRESHOLD_ROWS = 10+2  # 2 extra rows for header and padding
 
@@ -307,6 +309,64 @@ if logo_url:
         </style>
         """, unsafe_allow_html=True)
 
+
+def auto_train_models_if_missing():
+    """
+    Automatically train models if they don't exist.
+    This ensures the app works on Streamlit Cloud on first run.
+    """
+    model_dir = Path("model")
+    required_files = [
+        "logistic_regression.pkl",
+        "decision_tree.pkl", 
+        "k-nearest_neighbor.pkl",
+        "naive_bayes.pkl",
+        "random_forest.pkl",
+        "scaler.pkl"
+    ]
+    
+    # Check if all model files exist
+    all_exist = all((model_dir / file).exists() for file in required_files)
+    
+    if not all_exist:
+        st.warning("⏳ Models not found. Training models for the first time... This may take 30-60 seconds.")
+        progress_bar = st.progress(0)
+        
+        try:
+            # Import and run training pipeline
+            from train_models import MLClassificationPipeline
+            
+            pipeline = MLClassificationPipeline()
+            
+            progress_bar.progress(10)
+            st.info("📊 Loading dataset...")
+            X, y = pipeline.load_dataset()
+            
+            progress_bar.progress(30)
+            st.info("🔧 Preprocessing data...")
+            pipeline.preprocess_data(X, y)
+            
+            progress_bar.progress(50)
+            st.info("🤖 Training models...")
+            pipeline.train_all_models()
+            
+            progress_bar.progress(80)
+            st.info("💾 Saving models and results...")
+            pipeline.save_models()
+            pipeline.save_results_csv()
+            pipeline.save_test_data()
+            
+            progress_bar.progress(100)
+            st.success("✅ Models trained successfully! Reloading app...")
+            
+            # Rerun to load the newly trained models
+            import time
+            time.sleep(1)
+            st.rerun()
+            
+        except Exception as e:
+            st.error(f"❌ Error during model training: {str(e)}")
+            st.info("Please try refreshing the page or running: `python train_models.py` locally")
 
 
 @st.cache_resource
@@ -709,6 +769,9 @@ def display_model_selection_and_prediction(models, scaler, test_data=None):
 
 def main():
     """Main Streamlit application"""
+    
+    # Auto-train models if they don't exist (needed for first Streamlit Cloud run)
+    auto_train_models_if_missing()
     
     # Header introduction
     st.markdown("""
