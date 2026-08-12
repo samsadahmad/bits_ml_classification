@@ -163,7 +163,7 @@ For each model, the following 6 evaluation metrics are calculated:
 
 ## Model Performance Comparison
 
-![alt text](image.png)
+![Project Screenshot](image.png)
 
 ## Observations on Model Performance
 
