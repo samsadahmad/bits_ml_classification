@@ -53,7 +53,7 @@ This assignment demonstrates a complete end-to-end machine learning workflow inc
 
 This project is maintained on GitHub with all required files and documentation:
 
-**Repository**: [ML Classification Project](https://github.com/yourusername/ml_classification_project)
+**Repository**: [ML Classification Project](https://github.com/samsadahmad/bits_ml_classification)
 
 **Contents**: All source code, datasets, trained models, results, and documentation are available in the repository.
 
@@ -167,24 +167,7 @@ For each model, the following 6 evaluation metrics are calculated:
 
 ## Observations on Model Performance
 
-| ML Model Name                 | Observation about Model Performance                                                                           |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| Logistic Regression           | Best overall performer. It has the highest Accuracy (0.9825), AUC (0.9954), F1 (0.9861), and MCC (0.9623),    |
-|                               | showing excellent and consistent classification quality.                                                      |
-| ----------------------------- | -----------------------------------------------------------------------------------------------------------   |
-| Decision Tree                 | Lowest performer in this comparison. Although Precision is reasonable, its Accuracy (0.9123), AUC (0.9157).   |
-|                               | and MCC (0.8174) are the weakest among all models.                                                            |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| kNN                           | Strong, well-balanced model with high Recall (0.9722) and F1 (0.9655).                                        |
-|                               | It ties Random Forest on Accuracy, Precision, Recall, F1, and MCC.                                            |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| Naive Bayes                   | Mid-tier performance. It achieves a good AUC (0.9868), but lower Accuracy (0.9298) and MCC (0.8492)           |
-|                               | than the top-performing models.                                                                               |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| Random Forest (Ensemble)      | Robust and reliable performance with very high AUC (0.9939) and strong Recall/F1. Overall,                    |
-|                               | it performs similarly to kNN on most core metrics.                                                            |
-| ----------------------------- | ------------------------------------------------------------------------------------------------------------- |
-| **Overall Winner?**           | **Logistic Regression** because it delivers the best results across the majority of key evaluation metrics.   |
+![Project Screenshot](assets/model_observation.png)
 
 ---
 
