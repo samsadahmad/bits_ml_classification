@@ -88,7 +88,7 @@ st.markdown(
         background-image: url('{logo_url}');
         background-repeat: no-repeat;
         background-position: center;
-        background-size: min(150px, 55vw);
+        background-size: min(100px, 55vw);
         opacity: 0.10;
         pointer-events: none;
         z-index: 0;
@@ -97,13 +97,12 @@ st.markdown(
         position: relative;
         z-index: 1;
     }}
-    div[data-testid="stTabs"] div[role="tablist"],
-    div[data-baseweb="tab-list"],
-    .stTabs div[role="tablist"] {{
+    /* Tab list styling */
+    [role="tablist"] {{
         gap: 8px !important;
         border-bottom: 2px solid #dfe4ff !important;
         background-color: transparent !important;
-        padding-bottom: 0 !important;
+        padding-bottom: 8px !important;
         margin-bottom: 0 !important;
         position: sticky;
         top: 20px;
@@ -111,77 +110,111 @@ st.markdown(
         background: rgba(255, 255, 255, 0.98) !important;
         backdrop-filter: blur(4px);
     }}
-    div[data-baseweb="tab-highlight"],
-    div[data-baseweb="tab-border"] {{
+    /* Tab highlight/border */
+    [data-baseweb="tab-highlight"],
+    [data-baseweb="tab-border"] {{
         background-color: #5e49e2 !important;
         background-image: none !important;
         bottom: 0 !important;
     }}
-    div[data-testid="stTabs"] button[role="tab"],
-    div[data-baseweb="tab-list"] button[data-baseweb="tab"],
-    .stTabs button[role="tab"] {{
+    /* Tab buttons */
+    [role="tab"] {{
         background-color: #ffffff !important;
-        border: 1px solid #5e49e2 !important;
-        border-bottom: none !important;
-        border-radius: 10px 10px 0 0 !important;
-        padding: 10px 16px !important;
-        margin-bottom: 0 !important;
-        min-height: 46px !important;
+        border: 2px solid #5e49e2 !important;
+        border-radius: 8px 8px 0 0 !important;
+        padding: 12px 20px !important;
+        margin: 0 4px !important;
+        min-height: 44px !important;
         font-weight: 600 !important;
         box-shadow: none !important;
-        transition: all 0.2s ease !important;
+        transition: all 0.3s ease !important;
+        color: #5e49e2 !important;
+        cursor: pointer;
     }}
-    div[data-testid="stTabs"] button[role="tab"],
-    div[data-testid="stTabs"] button[role="tab"] *,
-    div[data-baseweb="tab-list"] button[data-baseweb="tab"],
-    div[data-baseweb="tab-list"] button[data-baseweb="tab"] *,
-    .stTabs button[role="tab"],
-    .stTabs button[role="tab"] * {{
+    [role="tab"] p,
+    [role="tab"] span {{
+        margin: 0 !important;
+        font-size: 0.95rem !important;
+        font-weight: 600 !important;
+        letter-spacing: 0.3px !important;
         color: #5e49e2 !important;
     }}
-    div[data-testid="stTabs"] button[role="tab"] p,
-    div[data-baseweb="tab-list"] button[data-baseweb="tab"] p,
-    .stTabs button[role="tab"] p {{
-        margin: 0 !important;
-        font-size: 0.96rem !important;
-        font-weight: 600 !important;
-        letter-spacing: 0.2px !important;
-    }}
-    div[data-testid="stTabs"] button[role="tab"]:hover,
-    div[data-baseweb="tab-list"] button[data-baseweb="tab"]:hover,
-    .stTabs button[role="tab"]:hover {{
+    /* Tab hover state */
+    [role="tab"]:hover {{
         background-color: #eef2ff !important;
         border-color: #5e49e2 !important;
-        transform: translateY(-1px);
+        transform: translateY(-2px);
+        box-shadow: 0 2px 8px rgba(94, 73, 226, 0.15) !important;
     }}
-    div[data-testid="stTabs"] button[role="tab"][aria-selected="true"],
-    div[data-baseweb="tab-list"] button[data-baseweb="tab"][aria-selected="true"],
-    .stTabs button[role="tab"][aria-selected="true"] {{
+    /* Active tab state */
+    [role="tab"][aria-selected="true"] {{
         background-color: #5e49e2 !important;
         border-color: #5e49e2 !important;
-        box-shadow: 0 4px 14px rgba(94, 73, 226, 0.25) !important;
-        transform: translateY(-1px);
+        box-shadow: 0 4px 16px rgba(94, 73, 226, 0.3) !important;
+        transform: translateY(-2px);
     }}
-    div[data-testid="stTabs"] button[role="tab"][aria-selected="true"],
-    div[data-testid="stTabs"] button[role="tab"][aria-selected="true"] *,
-    div[data-baseweb="tab-list"] button[data-baseweb="tab"][aria-selected="true"],
-    div[data-baseweb="tab-list"] button[data-baseweb="tab"][aria-selected="true"] *,
-    .stTabs button[role="tab"][aria-selected="true"],
-    .stTabs button[role="tab"][aria-selected="true"] * {{
+    [role="tab"][aria-selected="true"],
+    [role="tab"][aria-selected="true"] *,
+    [role="tab"][aria-selected="true"] p,
+    [role="tab"][aria-selected="true"] span {{
         color: #ffffff !important;
     }}
-    div[data-testid="stTabs"] div[role="tabpanel"],
-    .stTabs div[role="tabpanel"] {{
-        max-height: calc(100vh - 190px);
-        overflow-y: auto;
-        padding-right: 6px;
+    /* Tab panel full width scrolling */
+    [role="tabpanel"] {{
+        width: 100% !important;
+        max-width: 100% !important;
+        max-height: none !important;
+        height: auto !important;
+        overflow: visible !important;
+        padding: 0 !important;
+        margin: 0 !important;
     }}
     /* Remove unnecessary block container padding */
     .block-container {{
         padding-top: 0 !important;
-        padding-bottom: 0 !important;
+        padding-bottom: 5rem !important;
+        padding-left: 6rem !important;
+        padding-right: 6rem !important;
         margin-top: 0 !important;
         margin-bottom: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }}
+    /* Main content area */
+    .main {{
+        margin-top: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        display: flex !important;
+        justify-content: center !important;
+    }}
+    /* Center stApp */
+    .stApp {{
+        display: flex !important;
+        justify-content: center !important;
+    }}
+    /* Override default red selection indicator to blue */
+    .st-emotion-cache-qksclw[data-selected] .react-aria-SelectionIndicator {{
+        background-color: #2563eb !important;
+    }}
+    [data-selected] .react-aria-SelectionIndicator {{
+        background-color: #2563eb !important;
+    }}
+    /* Override red selectbox tag to blue */
+    .st-emotion-cache-14c3ugh {{
+        background-color: #2563eb !important;
+        color: rgb(255, 255, 255) !important;
+    }}
+    /* Ensure footer is visible */
+    footer {{
+        visibility: visible !important;
+        display: block !important;
+    }}
+    [data-testid="stFooter"] {{
+        visibility: visible !important;
+        display: block !important;
     }}
     </style>
     """,
@@ -193,8 +226,10 @@ if logo_url:
     st.markdown("""
         <style>
         .main {{
-            padding-top: 0.5rem;
+            padding: 0 !important;
+            margin: 0 !important;
             position: relative;
+            width: 100% !important;
         }}
         .main::before {{
             content: '';
@@ -242,6 +277,32 @@ if logo_url:
         }}
         [data-testid="stDataFrame"] tbody td {{
             color: #1f2937 !important;
+        }}
+        /* Override red selection indicator to blue */
+        .st-emotion-cache-qksclw[data-selected] .react-aria-SelectionIndicator {{
+            background-color: #2563eb !important;
+        }}
+        [data-selected] .react-aria-SelectionIndicator {{
+            background-color: #2563eb !important;
+        }}
+        /* Override red selectbox tag to blue */
+        .st-emotion-cache-14c3ugh {{
+            background-color: #2563eb !important;
+            color: rgb(255, 255, 255) !important;
+        }}
+        /* Selectbox button styling */
+        [data-testid="stSelectbox"] button {{
+            background-color: #2563eb !important;
+            color: white !important;
+        }}
+        /* Ensure footer is visible */
+        footer {{
+            visibility: visible !important;
+            display: block !important;
+        }}
+        [data-testid="stFooter"] {{
+            visibility: visible !important;
+            display: block !important;
         }}
         </style>
         """, unsafe_allow_html=True)
@@ -338,14 +399,14 @@ def display_metrics_table(results_df):
             background-color: #edf1ff;
         }
         [data-testid="stMultiSelect"] [data-baseweb="select"] {
-            background-color: #f6f8ff;
+            background-color: #2768F5;
             border-radius: 10px;
         }
         [data-testid="stMultiSelect"] [data-baseweb="select"] > div {
             background-color: #f6f8ff;
         }
         [data-testid="stMultiSelect"] [data-baseweb="tag"] {
-            background-color: #5e49e2;
+            background-color: #228B22;
             color: #ffffff;
         }
         </style>
